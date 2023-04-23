@@ -10,7 +10,10 @@ const initDb = callback => {
         return callback(null, _db);
     }
 
-    mongoClient.connect(mongoURL)
+    mongoClient.connect(mongoURL, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    })
         .then(client => {
             _db = client;
             callback(null, _db);
