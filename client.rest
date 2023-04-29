@@ -1,14 +1,32 @@
-// @host = localhost:3000
-@host = mongodb-contacts.onrender.com
+@host = localhost:3000
+// @host = mongodb-contacts.onrender.com
+
 @objectid_1 = 6444a1a14e023dbc80cd19cc
 @objectid_2 = 6444a1a14e023dbc80cd19cd
 @objectid_3 = 6444a1a14e023dbc80cd19ce
+@objectid_4 = 6444a1a14e023dbc80cd19cf
 
 ###
 GET http://{{host}}/contacts
+
 ###
 GET http://{{host}}/contacts/{{objectid_1}}
+
 ###
 GET http://{{host}}/contacts/{{objectid_2}}
+
 ###
 GET http://{{host}}/contacts/{{objectid_3}}
+
+### Not found
+GET http://{{host}}/contacts/{{objectid_4}}
+
+###
+POST http://{{host}}/contacts
+Content-Type: application/json
+
+{
+  "name": "Santa Claus",
+  "email": "big.elf@north.pole.org",
+  "phone": "1234567890",
+  "m"
