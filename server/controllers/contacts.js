@@ -81,7 +81,7 @@ export const putSingle = async (request, response) => {
 		await getDb('cse341-ls02')
 			.collection('contacts')
 			.updateOne({_id: contactId}, {$set: updatedContact})
-		response.status(204)
+		response.sendStatus(204)
 	} else {
 		response.status(404).json({ message: 'Contact not found' })
 	}
