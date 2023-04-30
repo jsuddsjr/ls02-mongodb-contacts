@@ -25,7 +25,7 @@ export const getAll = async (request, response) => {
  */
 export const getSingle = async (request, response) => {
 	if (!request.params.id) {
-		return response.sendStatus(400, 'No ID found')
+		return response.status(400).send('ID is required')
 	}
 
 	try {
@@ -38,7 +38,7 @@ export const getSingle = async (request, response) => {
 		if (Array.isArray(results) && results.length > 0) {
 			response.status(200).json(results[0])
 		} else {
-			response.status(404).json({message: 'Contact not found!'})
+			response.status(404).json({ message: 'Contact not found' })
 		}
 	} catch (error) {
 		response.status(500).json({message: error.message})
@@ -51,10 +51,6 @@ export const getSingle = async (request, response) => {
  * @param {ExpressResponse} response
  */
 export const postSingle = async (request, response) => {
-	if (!request.body) {
-		return response.sendStatus(400, 'No body found')
-	}
-
 	try {
 		const newContact = contactFromBody(request.body)
 		const result = await getDb('cse341-ls02')
@@ -72,11 +68,7 @@ export const postSingle = async (request, response) => {
  */
 export const putSingle = async (request, response) => {
 	if (!request.params.id) {
-		return response.sendStatus(400, 'No ID found')
-	}
-
-	if (!request.body) {
-		return response.sendStatus(400, 'No body found')
+		return response.status(400).send('ID is required')
 	}
 
 	const contactId = new ObjectId(request.params.id)
@@ -89,9 +81,9 @@ export const putSingle = async (request, response) => {
 		await getDb('cse341-ls02')
 			.collection('contacts')
 			.updateOne({_id: contactId}, {$set: updatedContact})
-		response.status(204).json(updatedContact)
+		response.status(204)
 	} else {
-		response.status(404).json({message: 'Contact not found!'})
+		response.status(404).json({ message: 'Contact not found' })
 	}
 }
 
@@ -101,14 +93,14 @@ export const putSingle = async (request, response) => {
  */
 export const deleteSingle = async (request, response) => {
 	if (!request.params.id) {
-		return response.sendStatus(400, 'No ID found')
+		return response.status(400).send('ID is required')
 	}
 
 	try {
 		const contactId = new ObjectId(request.params.id)
 		await getDb('cse341-ls02')
 			.collection('contacts')
-			.deleteSingle({_id: contactId})
+			.deleteOne({ _id: contactId })
 		response.status(200).json({message: 'Contact deleted'})
 	} catch (error) {
 		response.status(500).json({message: error.message})

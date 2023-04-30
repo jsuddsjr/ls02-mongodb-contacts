@@ -1,8 +1,8 @@
-import path from 'path'
-import swaggerJsdoc from 'swagger-jsdoc';
+import path from 'node:path'
+import swaggerJsdoc from 'swagger-jsdoc'
 
 const swaggerDefinition = {
-    openapi: '3.0.0',
+    swagger: '2.0',
     info: {
         title: 'Contacts API',
         version: '1.0.0',
@@ -16,16 +16,16 @@ const swaggerDefinition = {
         {
             url: 'https://mongodb-contacts.onrender.com',
             description: 'Render server',
-        }
-    ]
-};
+        },
+    ],
+}
 
 const options = {
     swaggerDefinition,
     // Paths to files containing OpenAPI definitions
     apis: [path.resolve('server/routes/contacts.js')],
-    failOnErrors: true
-};
+    failOnErrors: true,
+}
 
-const swaggerSpec = swaggerJsdoc(options);
-export default swaggerSpec;
+const swaggerSpec = swaggerJsdoc(options)
+export default swaggerSpec

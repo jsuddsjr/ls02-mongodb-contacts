@@ -31,6 +31,23 @@ const router = new Router()
  *       email: cotton.tail@bouncy-house.com
  *       favoriteColor: hot pink
  *       birthday: 1970-04-01
+ *   ContactArray:
+ *     type: array
+ *     items:
+ *       $ref: '#/definitions/Contact'
+ *   ContactId:
+ *     type: string
+ *     length: 24
+ *   ContactIdResponse:
+ *     type: object
+ *     properties:
+ *       _id:
+ *         $ref: '#/definitions/ContactId'
+ *   ErrorMessage:
+ *     type: object
+ *     properties:
+ *       message:
+ *         type: string
  */
 
 /**
@@ -41,12 +58,14 @@ const router = new Router()
  *     responses:
  *       200:
  *         description: Success
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/definitions/Contact'
+ *         type: object
+ *         schema:
+ *           $ref: '#/definitions/ContactArray'
  *       500:
  *         description: Internal Server Error
+ *         type: object
+ *         schema:
+ *           $ref: '#/definitions/ErrorMessage'
  */
 router.get('/', contacts.getAll)
 
@@ -61,7 +80,7 @@ router.get('/', contacts.getAll)
  *       in: path
  *       required: true
  *       schema:
- *         type: string
+ *         $ref: '#/definitions/ContactId'
  *     responses:
  *        200:
  *          description: Success
@@ -74,6 +93,9 @@ router.get('/', contacts.getAll)
  *          description: Not found
  *        500:
  *          description: Internal Server Error
+ *          type: object
+ *          schema:
+ *            $ref: '#/definitions/ErrorMessage'
  */
 router.get('/:id', contacts.getSingle)
 
@@ -92,10 +114,16 @@ router.get('/:id', contacts.getSingle)
  *     responses:
  *       201:
  *         description: Created
+ *         type: object
+ *         schema:
+ *           $ref: '#/definitions/ContactIdResponse'
  *       400:
  *         description: Bad request
  *       500:
  *         description: Internal Server Error
+ *         type: object
+ *         schema:
+ *           $ref: '#/definitions/ErrorMessage'
  */
 router.post('/', contacts.postSingle)
 
@@ -110,7 +138,7 @@ router.post('/', contacts.postSingle)
  *      in: path
  *      required: true
  *      schema:
- *        type: string
+ *        $ref: '#/definitions/ContactId'
  *    - name: contact
  *      description: Contact object
  *      in: body
@@ -118,17 +146,17 @@ router.post('/', contacts.postSingle)
  *      schema:
  *        $ref: '#/definitions/Contact'
  *    responses:
- *      200:
+ *      204:
  *        description: Success
- *        type: object
- *        schema:
- *          $ref: '#/definitions/Contact'
  *      400:
  *        description: Bad request
  *      404:
  *        description: Not found
  *      500:
  *        description: Internal Server Error
+ *        type: object
+ *        schema:
+ *          $ref: '#/definitions/ErrorMessage'
  */
 router.put('/:id', contacts.putSingle)
 
@@ -143,10 +171,13 @@ router.put('/:id', contacts.putSingle)
  *       in: path
  *       required: true
  *       schema:
- *         type: string
+ *         $ref: '#/definitions/ContactId'
  *     responses:
  *       200:
  *         description: Success
+ *         type: object
+ *         schema:
+ *           $ref: '#/definitions/ErrorMessage'
  *       400:
  *         description: Bad request
  */
