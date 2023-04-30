@@ -1,3 +1,4 @@
+import cors from 'cors'
 import express from 'express'
 import logger from 'morgan'
 import swaggerUi from 'swagger-ui-express';
@@ -12,6 +13,10 @@ const app = express()
 	.use(logger('dev'))
 	.use(express.json())
 	.use(express.urlencoded({extended: false}))
+	.use(cors({
+		origin: '*',
+		methods: ['GET', 'POST', 'PATCH', 'DELETE'],
+	}))
 
 	// Routes
 	.use('/', indexRoute)

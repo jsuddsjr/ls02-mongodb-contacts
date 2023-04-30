@@ -1,3 +1,4 @@
+import path from 'path'
 import swaggerJsdoc from 'swagger-jsdoc';
 
 const swaggerDefinition = {
@@ -13,16 +14,17 @@ const swaggerDefinition = {
             description: 'Local server',
         },
         {
-            url: 'mongodb-contacts.onrender.com',
+            url: 'https://mongodb-contacts.onrender.com',
             description: 'Render server',
         }
-    ],
+    ]
 };
 
 const options = {
     swaggerDefinition,
     // Paths to files containing OpenAPI definitions
-    apis: ['./routes/*.js']
+    apis: [path.resolve('server/routes/contacts.js')],
+    failOnErrors: true
 };
 
 const swaggerSpec = swaggerJsdoc(options);
