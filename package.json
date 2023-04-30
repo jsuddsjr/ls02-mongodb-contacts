@@ -72,15 +72,11 @@
   "xo": {
     "prettier": true,
     "semicolon": false,
-    "globals": [
-      "http",
-      "path",
-      "process"
-    ],
     "envs": [
-      "node",
+      "es6",
       "jest",
-      "es6"
+      "mongo",
+      "node"
     ]
   }
 }

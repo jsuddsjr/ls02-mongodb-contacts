@@ -1,4 +1,5 @@
-import { MongoClient } from 'mongodb'
+import process from 'node:process'
+import {MongoClient} from 'mongodb'
 import dotenv from 'dotenv'
 
 dotenv.config()
@@ -53,5 +54,5 @@ export const getDb = (name) => {
 	return _db.db(name)
 }
 
-const connect = { initDb, getDb }
+const connect = {initDb, getDb}
 export default connect

@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import http from 'node:http'
+import process from 'node:process'
 import debugLib from 'debug'
 import app from '../app.js'
 import mongodb from '../db/connect.js'

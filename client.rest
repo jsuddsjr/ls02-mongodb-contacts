@@ -1,15 +1,15 @@
-@host = localhost:3000
-// @host = mongodb-contacts.onrender.com
+//@host = localhost:3000
+@host = mongodb-contacts.onrender.com
 
 @objectid_1 = 6444a1a14e023dbc80cd19cc
 @objectid_2 = 6444a1a14e023dbc80cd19cd
 @objectid_3 = 6444a1a14e023dbc80cd19ce
 @objectid_4 = 6444a1a14e023dbc80cd19cf
 
-###
+### List all contacts
 GET http://{{host}}/contacts
 
-###
+### Find contact by ID
 GET http://{{host}}/contacts/{{objectid_1}}
 
 ###
