@@ -12,7 +12,7 @@
     "watch": "nodemon",
     "server": "node ./server/bin/www.js",
     "lint:fix": "npm run lint -- --fix",
-    "lint": "xo --env=node **/*.js",
+    "lint": "xo **/*.js",
     "test": "jest"
   },
   "repository": {
@@ -67,6 +67,20 @@
   "babel": {
     "presets": [
       "@babel/preset-env"
+    ]
+  },
+  "xo": {
+    "prettier": true,
+    "semicolon": false,
+    "globals": [
+      "http",
+      "path",
+      "process"
+    ],
+    "envs": [
+      "node",
+      "jest",
+      "es6"
     ]
   }
 }
