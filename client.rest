@@ -21,12 +21,42 @@ GET http://{{host}}/contacts/{{objectid_3}}
 ### Not found
 GET http://{{host}}/contacts/{{objectid_4}}
 
-###
+### Add new contact
 POST http://{{host}}/contacts
 Content-Type: application/json
 
 {
-  "name": "Santa Claus",
+  "firstName": "Santa",
+  "lastName": "Claus",
   "email": "big.elf@north.pole.org",
-  "phone": "1234567890",
-  "m"
+  "favoriteColor": "candy cane red",
+  "birthday": "12/25/0000"
+}
+
+### Update contact (partial record OK)
+PUT http://{{host}}/contacts/{{objectid_1}}
+Content-Type: application/json
+
+{
+  "firstName": "Santa",
+  "lastName": "Claus"
+}
+
+### Restore contact
+PUT http://{{host}}/contacts/{{objectid_1}}
+Content-Type: application/json
+
+{
+  "firstName": "John",
+  "lastName": "Doe",
+  "email": "johndoe@example.com",
+  "favoriteColor": "beige",
+  "birthday": "1980-01-01"
+}
+
+### Delete contact (ID is malformed)
+DELETE http://{{host}}/contacts/bogusid
+
+### Delete contact
+# @prompt id_to_delete Enter a valid record ID
+DELETE http://{{host}}/contacts/{{id_to_delete}}
