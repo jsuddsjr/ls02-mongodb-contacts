@@ -33,25 +33,18 @@ Content-Type: application/json
   "birthday": "12/25/0000"
 }
 
+### Retrieve new contact
+# @prompt id_to_retrieve Enter a valid record ID
+GET http://{{host}}/contacts/{{id_to_retrieve}}
+
 ### Update contact (partial record OK)
-PUT http://{{host}}/contacts/{{objectid_1}}
+# @prompt id_to_update Enter a valid record ID
+PUT http://{{host}}/contacts/{{id_to_update}}
 Content-Type: application/json
 
 {
-  "firstName": "Santa",
-  "lastName": "Claus"
-}
-
-### Restore contact
-PUT http://{{host}}/contacts/{{objectid_1}}
-Content-Type: application/json
-
-{
-  "firstName": "John",
-  "lastName": "Doe",
-  "email": "johndoe@example.com",
-  "favoriteColor": "beige",
-  "birthday": "1980-01-01"
+  "firstName": "Mrs.",
+  "email": "the.boss@north.pole.org"
 }
 
 ### Delete contact (ID is malformed)
